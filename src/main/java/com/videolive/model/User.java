@@ -13,7 +13,7 @@ public class User {
     public User(String username,String plainPassword,String encryptedPassword,String name,
     		String email,String creationDate,String modificationDate){
     	this.username = username;
-    	this.plainPassword = plainPassword;
+    	this.plainPassword = plainPassword;  
     	this.encryptedPassword = encryptedPassword;
     	this.name = name;
     	this.email = email;
