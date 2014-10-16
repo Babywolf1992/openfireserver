@@ -1,0 +1,4 @@
+安装本地jar到本地maven仓库的命令
+cmd>mvn install:install-file -Dfile=D:\openfire.jar -DgroupId
+=org.jive.openfire -DartifactId=openfire -Dversion=3.9.3 -Dpackaging=jar -Dgener
+atePom=true -DcreateChecksum=true

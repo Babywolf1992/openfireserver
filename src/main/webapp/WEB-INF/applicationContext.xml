@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"   
+       xmlns:context="http://www.springframework.org/schema/context"  
+       xmlns:mvc="http://www.springframework.org/schema/mvc"   
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd   
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<mvc:annotation-driven />  
+	<context:annotation-config />
+	<!--   启动对@AspectJ注解的支持-->
+    <aop:aspectj-autoproxy/>
+    <!--  通知spring使用cglib而不是jdk的来生成代理方法 AOP可以拦截到Controller-->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 把标记了@Controller注解的类转换为bean -->
+    <context:component-scan base-package="com.videolive.controller com.videolive.service com.videolive.aop com.videolive.*" />
+	<!-- 定义个缺省的控制适配器 -->
+	<!--   <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> -->
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->     
+     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<!-- 获取配置文件 -->
+	<bean id="config"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:dbconfig/db-config.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 获取数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>${db.dirverClass}</value>
+		</property>
+		<property name="url">
+			<value>${db.url}</value>
+		</property>
+		<property name="username">
+			<value>${db.username}</value>
+		</property>
+		<property name="password">
+			<value>${db.password}</value>
+		</property>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+    </bean>
+    <!-- 配置操作的DaoImpl实现类 -->  
+       <!-- 配置操作的UaoImpl实现类 -->  
+   <bean id="userDaoImpl" class="com.videolive.dao.impl.UserDaoImpl">  
+      <!-- 注入模板类对象 -->  
+      <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+   </bean>
+    <bean id="logDaoImpl" class="com.videolive.dao.impl.LogDaoImpl">  
+      <!-- 注入模板类对象 -->  
+      <property name="jdbcTemplate" ref="jdbcTemplate"/>  
+   </bean> 
+
+	<!--
+		URL到处理器的映射列表可以配置多个
+		mappings属性健值为URL程序文件地址，而值为处理器的Bean名字，URL程序文件地址可采用路径匹配的模式，如：
+		com/mvc/t?st.jsp:匹配com/mvc/test.jsp、com/mvc/tast.jsp等 com/mvc /*.jsp
+		：匹配所有com/mvc/下带jsp后缀的URL com/mvc
+		/**/test.jsp：匹配所有在com/mvc路径下或子孙路径下的test.jsp com/mvc
+		/**/*.jsp：匹配所有com/mvc路径下或子孙路径下带.jsp后缀的URL cn/**/web/bla.jsp：匹配
+		cn/option/web/dog.jsp cn/option/test/web/dog.jsp cn/web/ dog.jsp的请求
+	-->
+	
+
+	<!--定义视图 通过internalResourceView来表示 使用的是Servlet/jsp技术-->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.InternalResourceView
+			</value>
+		</property>
+		<!--jsp存放的目录--> 
+		<property name="prefix">
+			<value>/</value>
+		</property>
+		<!--jsp文件的后缀-->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+</beans>
