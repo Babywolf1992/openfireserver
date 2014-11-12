@@ -49,12 +49,14 @@ background=../images/menu_bg.jpg border=0>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="./addData.jsp" target=main>增加数据</A></TD>
+						<TD><A class=menuChild href="http://127.0.0.1:9090/" 
+						onclick="window.open(this.href,'_blank','scrollbars=0,resizable=0;width=300');return false" 
+						 target=main>openfire管理</A></TD>
 					</TR>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="<%=request.getContextPath() %>/emp.do?method=delPage" target=main>删除数据
+						<TD><A class=menuChild href="<%=request.getContextPath() %>/videolive.do?method=alluserinfo" target=main>用户信息</A></TD>
 					</TR>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9

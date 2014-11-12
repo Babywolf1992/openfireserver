@@ -369,3 +369,28 @@ INSERT INTO ofUser (username, plainPassword, name, email, creationDate, modifica
 
 # Entry for default conference service
 INSERT INTO ofMucService (serviceID, subdomain, isHidden) VALUES (1, 'conference', 0);
+
+-------------------------------------NewAddScript-------------------------------------------------
+CREATE TABLE `logdata` (    
+`ID`  int(10) NOT NULL AUTO_INCREMENT, 
+ `description` varchar(200) DEFAULT NULL,    
+ `method` varchar(200) DEFAULT NULL,
+ `type` varchar(200) DEFAULT NULL,
+ `requestIp` varchar(200) DEFAULT NULL,
+ `exceptionCode` varchar(200) DEFAULT NULL,
+ `exceptionDetail` varchar(200) DEFAULT NULL,
+ `params` varchar(200) DEFAULT NULL,
+ `createBy` varchar(200) DEFAULT NULL,
+ `createDate` datetime DEFAULT NULL,
+ PRIMARY KEY (`ID`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1;
+
+CREATE TABLE `rooms` (    
+`id`  varchar(100) NOT NULL , 
+ `name` varchar(200) DEFAULT NULL,    
+ `type` varchar(200) DEFAULT NULL,
+ `people` varchar(200) DEFAULT NULL,
+ `imageurl` varchar(200) DEFAULT NULL,
+ `ishot` varchar(200) DEFAULT NULL,
+ PRIMARY KEY (`id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1;

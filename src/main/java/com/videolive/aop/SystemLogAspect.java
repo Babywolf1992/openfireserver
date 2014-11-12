@@ -73,7 +73,7 @@ public class SystemLogAspect {
             System.out.println("=====前置通知开始=====");
             System.out.println("请求方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
             System.out.println("方法描述:" + getControllerMethodDescription(joinPoint));
-            System.out.println("请求人:" + user.getName());
+            System.out.println("请求人:" + user.getUsername());
             System.out.println("请求IP:" + ip);
             //*========数据库日志=========*//
             Log log = new Log();
@@ -113,7 +113,7 @@ public class SystemLogAspect {
              System.out.println("=====后置通知开始=====");
              System.out.println("请求方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
              System.out.println("方法描述:" + getControllerMethodDescriptionAfterAspect(joinPoint));
-             System.out.println("请求人:" + user.getName());
+             System.out.println("请求人:" + user.getUsername());
              System.out.println("请求IP:" + ip);
              //*========数据库日志=========*//
              Log log = new Log();
@@ -165,7 +165,7 @@ public class SystemLogAspect {
             System.out.println("异常信息:" + e.getMessage());
             System.out.println("异常方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
             System.out.println("方法描述:" + getServiceMthodDescription(joinPoint));
-            System.out.println("请求人:" + user.getName());
+            System.out.println("请求人:" + user.getUsername());
             System.out.println("请求IP:" + ip);
             System.out.println("请求参数:" + params);
                /*==========数据库日志=========*/

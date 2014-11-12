@@ -6,11 +6,7 @@
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
 <title>登陆界面</title>  
-<mce:script type="text/javascript"><!--   
-function turnback(){   
-    window.location.href="<%=request.getContextPath() %>/emp.do";   
-}   
-// --></mce:script>  
+  
 </head>  
 <style type="text/css">
    #d1{
@@ -25,7 +21,7 @@ function turnback(){
 <body>  
 
 
-<form method="post" action="<%=request.getContextPath() %>/emp.do?method=login">  
+<form method="post" action="<%=request.getContextPath() %>/videolive.do?method=login">  
 <div><c:out value="${addstate}"></c:out></div>  
 <div id="d1" align="center">
 <table >  
