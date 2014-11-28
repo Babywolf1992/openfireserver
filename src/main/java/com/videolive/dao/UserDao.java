@@ -2,6 +2,8 @@ package com.videolive.dao;
 
 import java.util.List;
 
+import com.videolive.model.ReleaseInfo;
+import com.videolive.model.UploadFiles;
 import com.videolive.model.User;
 import com.videolive.model.webrepdata.Rooms;
 
@@ -32,4 +34,12 @@ public interface UserDao {
     public boolean delVideoRoom(Rooms.Roominfo roomInfo);
     /*修改视频房间信息*/
     public boolean modifyVideoRoom(Rooms.Roominfo roomInfo);
+    /*存储发布信息*/
+    public boolean saveReleaseInfo(ReleaseInfo releaseInfo);
+    /*管理发布信息*/
+    public List<ReleaseInfo> getInfoRelease();
+    /*根据id获取单条信息*/
+    public ReleaseInfo getViewInfo(String id);
+    /*存储上传的文件*/
+    public boolean saveUploadFiles(ReleaseInfo uplf);
 }

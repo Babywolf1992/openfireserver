@@ -61,19 +61,19 @@ background=../images/menu_bg.jpg border=0>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="<%=request.getContextPath() %>/emp.do?method=reltime" target=main>实时状态</A></TD>
+						<TD><A class=menuChild href="<%=request.getContextPath() %>/videolive.do?method=reltime" target=main>FMS管理</A></TD>
 					</TR>
 					<%} %>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="<%=request.getContextPath() %>/emp.do?method=searchPage" target=main>查询数据</A></TD>
+						<TD><A class=menuChild href="<%=request.getContextPath() %>/videolive.do?method=inforelease" target=main>信息发布</A></TD>
 					</TR>	
-					<TR height=20>
+					 <TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="<%=request.getContextPath() %>/emp.do?method=allIoData" target=main>全部数据</A></TD>
-					</TR>	
+						<TD><A class=menuChild href="<%=request.getContextPath() %>/videolive.do?method=infomanage" target=main>信息管理</A></TD>
+					</TR>	 
 					<TR height=4>
 						<TD colSpan=2></TD>
 					</TR>
@@ -116,7 +116,7 @@ background=../images/menu_bg.jpg border=0>
 					<TR height=20>
 						<TD align=middle width=30><IMG height=9
 							src="../images/menu_icon.gif" width=9></TD>
-						<TD><A class=menuChild href="<%=request.getContextPath() %>/emp.do?method=logmanage" target=main>日志管理</A></TD>
+						<TD><A class=menuChild href="<%=request.getContextPath() %>/videolive.do?method=logmanage" target=main>日志管理</A></TD>
 					</TR>
 					<%} %>
 					<TR height=4>

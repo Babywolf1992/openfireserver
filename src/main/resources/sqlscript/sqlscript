@@ -394,3 +394,26 @@ CREATE TABLE `rooms` (
  `ishot` varchar(200) DEFAULT NULL,
  PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1;
+
+CREATE TABLE `releaseInfo` (    
+`id`  int(10) NOT NULL AUTO_INCREMENT, 
+ `txtTitle` varchar(200) DEFAULT NULL,    
+ `editor` varchar(500) DEFAULT NULL,
+ `createtime` datetime DEFAULT NULL,
+ `creator` varchar(200) DEFAULT NULL,
+ `validate` varchar(20) DEFAULT -1,
+ `filetype` varchar(20) DEFAULT NULL,
+ `fileurl` varchar(200) DEFAULT NULL,
+ `filename` varchar(200) DEFAULT NULL,
+ PRIMARY KEY (`id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1;
+
+create table `uploadfiles`(
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`fileName` varchar(200) DEFAULT NULL,
+`extName` varchar(200) DEFAULT NULL,
+`fileFullName` varchar(200) DEFAULT NULL,
+`createBy` varchar(200) DEFAULT NULL,
+`createTime` datetime DEFAULT NULL,
+PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1;

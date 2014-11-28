@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.videolive.aop.SystemServiceLog;
 import com.videolive.dao.impl.LogDaoImpl;
 import com.videolive.dao.impl.UserDaoImpl;
+import com.videolive.model.ReleaseInfo;
+import com.videolive.model.UploadFiles;
 import com.videolive.model.User;
 import com.videolive.model.webrepdata.Rooms;
 
@@ -88,5 +90,31 @@ public class VideoLiveService {
 		 return isOk;
 	 }
 	
+	 //存储发布内容
+	 public boolean infosave(ReleaseInfo releaseInfo){
+		 boolean isOk = false;
+		 isOk = userDaoImpl.saveReleaseInfo(releaseInfo);
+		 return isOk;
+	 }
+	 
+	 //管理发布信息
+	 public List<ReleaseInfo> getInfoRelease(){
+		 List<ReleaseInfo> list = userDaoImpl.getInfoRelease();
+		 return list;
+		 
+	 }
+	 
+	 //根据id获取单条信息
+	 public ReleaseInfo getViewInfo(String id){
+		 ReleaseInfo releaseInfo = userDaoImpl.getViewInfo(id);
+		 return releaseInfo;
+	 }
+	 
+	 //存储上传的文件
+	 public boolean saveuploadfiles(ReleaseInfo uplf){
+		 boolean isOk = false;
+		 isOk = userDaoImpl.saveUploadFiles(uplf);
+		 return isOk;
+	 }
 
 }

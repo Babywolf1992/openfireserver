@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.videolive.dao.UserDao;
+import com.videolive.model.ReleaseInfo;
+import com.videolive.model.UploadFiles;
 import com.videolive.model.User;
 import com.videolive.model.webrepdata.Rooms;
 
@@ -137,6 +139,73 @@ public class UserDaoImpl implements UserDao{
     	int i = jdbcTemplate.update("update rooms set id=?,name=?,type=?,people=?,imageurl=?,ishot=? where id=?", 
     			new Object[] { roomInfo.getId(),roomInfo.getName(),roomInfo.getType(),roomInfo.getPeople(),
     			roomInfo.getImageurl(),roomInfo.getIshot(),roomInfo.getId()});
+    	return i>0?true:false;
+    }
+    
+    @Override
+    public boolean saveReleaseInfo(ReleaseInfo releaseInfo){
+    	String sql = "insert into releaseInfo(txtTitle,editor,createtime,creator) values(?,?,?,?)";
+    	int i = 0;
+    	i = jdbcTemplate.update(sql, new Object[]{releaseInfo.getTxtTitle(),releaseInfo.getEditor(),releaseInfo.getCreatetime(),
+    			releaseInfo.getCreator()});
+    	return i>0?true:false;
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Override
+    public List<ReleaseInfo> getInfoRelease(){
+    	String sql = "select * from releaseInfo";
+    	List<ReleaseInfo> entities = new ArrayList<ReleaseInfo>();
+        entities = (List<ReleaseInfo>) jdbcTemplate.query(  
+                sql, new Object[] { }, new RowMapper() {  
+                    @Override  
+                    public Object mapRow(ResultSet rs, int rowNum)  
+                            throws SQLException {  
+                    	    ReleaseInfo releaseInfo = new ReleaseInfo();
+                    	    releaseInfo.setId(rs.getString("id"));
+                    	    releaseInfo.setTxtTitle(rs.getString("txtTitle"));
+                    	    releaseInfo.setEditor(rs.getString("editor"));
+                    	    releaseInfo.setCreator(rs.getString("creator"));
+                    	    releaseInfo.setCreatetime(rs.getString("createtime"));
+                    	    releaseInfo.setValidate(rs.getString("validate"));
+                    	    releaseInfo.setFilename(rs.getString("filename"));
+                    	    releaseInfo.setFiletype(rs.getString("filetype"));
+                    	    releaseInfo.setFileurl(rs.getString("fileurl"));
+                        	
+                        return releaseInfo;  
+                    }  
+                });  
+        return entities;  
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Override
+    public ReleaseInfo getViewInfo(String id){
+    	String sql = "select * from releaseInfo where id = "+Integer.parseInt(id);
+    	ReleaseInfo releaseInfo = null;
+    	releaseInfo = (ReleaseInfo)jdbcTemplate.queryForObject(sql, new RowMapper() {  
+            @Override  
+            public Object mapRow(ResultSet rs, int rowNum)  
+                    throws SQLException {  
+            	ReleaseInfo entity = new ReleaseInfo();
+            	entity.setId(String.valueOf(rs.getInt("id")) );
+            	entity.setTxtTitle(rs.getString("txtTitle"));
+            	entity.setEditor(rs.getString("editor"));
+            	entity.setCreator(rs.getString("creator"));
+            	entity.setCreatetime(rs.getString("createtime"));
+            	entity.setValidate(rs.getString("validate")); 
+                return entity;  
+            }  
+        });
+    	return releaseInfo;
+    }
+    
+    @Override
+    public boolean saveUploadFiles(ReleaseInfo uplf){
+    	String sql = "insert into releaseinfo(txtTitle,editor,createtime,creator,validate,filetype,fileurl,filename) values(?,?,?,?,?,?,?,?)";
+    	int i = 0;
+    	i = jdbcTemplate.update(sql, new Object[]{uplf.getTxtTitle(),uplf.getEditor(),uplf.getCreatetime(),uplf.getCreator(),
+    			uplf.getValidate(),uplf.getFiletype(),uplf.getFileurl(),uplf.getFilename()});
     	return i>0?true:false;
     }
    
